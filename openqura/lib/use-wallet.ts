@@ -84,7 +84,7 @@ export function useWallet() {
       let accounts: string[] = []
       try {
         // Use ethereum.request directly to check current accounts
-        accounts = await window.ethereum.request({ method: 'eth_accounts' })
+        accounts = (await window.ethereum.request({ method: 'eth_accounts' })) as string[]
       } catch (error) {
         console.log("Could not get current accounts:", error)
         accounts = []
@@ -98,7 +98,7 @@ export function useWallet() {
             description: "Please approve the connection request in MetaMask popup.",
           })
           
-          accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+          accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }) as string[]
         } catch (requestError: any) {
           if (requestError.code === -32002) {
             // MetaMask is already processing, wait and try to get accounts again
@@ -109,7 +109,7 @@ export function useWallet() {
             // Wait a bit and check if accounts become available
             await new Promise(resolve => setTimeout(resolve, 3000))
             try {
-              accounts = await window.ethereum.request({ method: 'eth_accounts' })
+              accounts = (await window.ethereum.request({ method: 'eth_accounts' })) as string[]
             } catch {
               accounts = []
             }
