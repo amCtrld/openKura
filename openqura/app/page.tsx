@@ -86,7 +86,7 @@ export default function HomePage() {
         const contract = getContract()
         const electionCount = await contract.getElectionCount()
         
-        if (electionCount === 0n) {
+        if (electionCount === BigInt(0)) {
           // No elections on blockchain, check Firebase
           const electionsRef = collection(db, "elections")
           const q = query(electionsRef, orderBy("createdAt", "desc"))

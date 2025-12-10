@@ -18,6 +18,19 @@ import { useWallet } from "@/lib/use-wallet"
 import { useVotingContract } from "@/lib/use-voting-contract"
 import { toast } from "sonner"
 
+interface ElectionDetails {
+  id: string
+  electionId: number
+  title: string
+  description?: string
+  status: "active" | "ended" | "upcoming"
+  startDate?: Date
+  endDate?: Date
+  bannerImage?: string
+  totalVotes?: number
+  externalUrl?: string
+}
+
 // Demo data fallback
 const DEMO_ELECTION: ElectionDetails = {
   id: "1",
