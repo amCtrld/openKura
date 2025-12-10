@@ -1,5 +1,6 @@
 node_modules
 .env
+ACADEMIC_DOCUMENTATION
 
 # Hardhat files
 /cache
